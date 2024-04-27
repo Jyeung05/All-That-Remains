@@ -1,4 +1,10 @@
 using Godot;
 using System;
 
-interface Jump : 
+interface Jump{
+	// int default jump(double scalar, int power){
+	//	return scalar * power
+	//};
+	
+	
+}

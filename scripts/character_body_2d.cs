@@ -1,44 +1,36 @@
 using Godot;
 using System;
 
-public partial class character_body_2d : MovingEntities, DamageReciever
+public partial class character_body_2d : MovingEntities
 {
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -400.0f;
-
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-
-	public override void _PhysicsProcess(double delta)
+	
+	public override void _Ready()
 	{
-		
-		Vector2 velocity = Velocity;
-
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-			velocity.Y = JumpVelocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
+			this.Speed = 300f;
+			this.JumpVelocity = 400f;
+	}
+	
+	
+		// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+		this.yaxis = 0;
+		this.xaxis = 0;
+		if (Input.IsActionPressed("ui_right")){
+			this.xaxis = 1;
 		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
+		if (Input.IsActionPressed("ui_left")){
+			this.xaxis = -1;
 		}
-
-		Velocity = velocity;
-		MoveAndSlide();
+		if (Input.IsActionPressed("ui_up")){
+			this.yaxis = 1;
+		}
+		if (Input.IsActionPressed("ui_down")){
+			this.yaxis = -1;
+		}
 	}
 
-	public void damaged(int dmg){
+	void damaged(int dmg){
 
 	}
 }
