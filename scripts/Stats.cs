@@ -148,7 +148,7 @@ public partial class Stats : Node
 	public void dealDmg(int enemyad, int enemyap, int enemyarpen, int enemymrpen) {
 		int adComponent = (int)(Math.Sqrt(15*(this.ar - enemyarpen))*(1/100)*enemyad);
 		int apComponent = (int)(Math.Sqrt(15*(this.mr - enemymrpen))*(1/100)*enemyap);
-		this.hp = this.hp - ((1/100)*res)*((adComponent) + (adComponent));
+		this.hp = this.hp - 1/100*res*(adComponent + apComponent);
 	}
 	
 	public void heal(int amount) {
@@ -171,3 +171,4 @@ public partial class Stats : Node
 		GD.Print(regenCounter);
 	}
 }
+
