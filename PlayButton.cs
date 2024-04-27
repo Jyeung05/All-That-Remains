@@ -7,12 +7,14 @@ public partial class PlayButton : Godot.Button
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		//loads scene
 		ResourceLoader.Load<PackedScene>("res://scenes/world.tscn").Instantiate();
 	}
 
+	//called when function is pressed
 	private void ButtonPressed()
 	{
-		GD.Print("Hello world!");
+		//changes scene and deletes title screen
 		GetTree().ChangeSceneToFile("res://scenes/world.tscn");
 		GetNode("scenes/titleScreen.tscn").Free();
 	}
