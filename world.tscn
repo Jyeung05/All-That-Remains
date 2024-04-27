@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://nwnqe01s5430"]
+[gd_scene load_steps=3 format=3 uid="uid://nwnqe01s5430"]
 
 [ext_resource type="PackedScene" uid="uid://b7o1pr6qtahkt" path="res://terrain.tscn" id="1_rn6ax"]
+[ext_resource type="PackedScene" uid="uid://dy1g5w2428glw" path="res://character_body_2d.tscn" id="2_ykvym"]
 
 [node name="World" type="Node2D"]
 
@@ -19,3 +20,5 @@ rotation = 0.657989
 [node name="Terrain4" parent="." instance=ExtResource("1_rn6ax")]
 position = Vector2(1477, 230)
 rotation = 2.27416
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_ykvym")]
