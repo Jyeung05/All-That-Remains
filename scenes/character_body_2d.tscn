@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dy1g5w2428glw"]
 
-[ext_resource type="Script" path="res://character_body_2d.cs" id="1_5vk26"]
+[ext_resource type="Script" path="res://scripts/character_body_2d.cs" id="1_5vk26"]
 [ext_resource type="Texture2D" uid="uid://8m4uur10xeho" path="res://assets/icon.svg" id="1_315d7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3el4o"]
