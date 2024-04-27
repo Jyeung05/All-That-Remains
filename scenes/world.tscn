@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://nwnqe01s5430"]
+
+[ext_resource type="PackedScene" uid="uid://b7o1pr6qtahkt" path="res://scenes/terrain.tscn" id="1_fs7q0"]
+[ext_resource type="PackedScene" uid="uid://dy1g5w2428glw" path="res://scenes/character_body_2d.tscn" id="2_6344q"]
+
+[node name="World" type="Node2D"]
+
+[node name="Terrain" parent="." instance=ExtResource("1_fs7q0")]
+position = Vector2(-4, -3)
+scale = Vector2(2, 2)
+
+[node name="Terrain2" parent="." instance=ExtResource("1_fs7q0")]
+position = Vector2(4, 670)
+scale = Vector2(2, 2)
+
+[node name="Terrain3" parent="." instance=ExtResource("1_fs7q0")]
+position = Vector2(-424, 311)
+rotation = 0.657989
+
+[node name="Terrain4" parent="." instance=ExtResource("1_fs7q0")]
+position = Vector2(1477, 230)
+rotation = 2.27416
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_6344q")]
