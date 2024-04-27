@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class character_body_2d : CharacterBody2D
+public partial class character_body_2d : MovingEntities, DamageReciever
 {
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
@@ -11,6 +11,7 @@ public partial class character_body_2d : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
@@ -35,5 +36,9 @@ public partial class character_body_2d : CharacterBody2D
 
 		Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void damaged(int dmg){
+
 	}
 }
