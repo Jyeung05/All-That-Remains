@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://vm0xoxgs2354"]
+
+[ext_resource type="Script" path="res://scripts/titleScreen/SettingsButton.cs" id="1_eknav"]
+[ext_resource type="Script" path="res://scripts/titleScreen/PlayButton.cs" id="1_pwicb"]
+
+[node name="screen" type="Node2D"]
+
+[node name="SettingsButton" type="Button" parent="."]
+offset_left = 107.0
+offset_top = 237.0
+offset_right = 1016.0
+offset_bottom = 398.0
+text = "settings"
+script = ExtResource("1_eknav")
+
+[node name="PlayButton" type="Button" parent="."]
+offset_left = 112.0
+offset_top = 40.0
+offset_right = 1017.0
+offset_bottom = 187.0
+text = "Play"
+script = ExtResource("1_pwicb")
+
+[connection signal="pressed" from="SettingsButton" to="SettingsButton" method="SettingsButtonPressed"]
+[connection signal="pressed" from="PlayButton" to="PlayButton" method="PlayButtonPressed"]
