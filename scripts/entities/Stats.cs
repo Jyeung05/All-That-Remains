@@ -46,6 +46,22 @@ public partial class Stats : Node
 		this.res = other.res;
 		this.maxHp = other.maxHp;
 	}
+
+	public Stats() {
+		this.hp = 0;
+		this.regenPercent = 0;
+		this.ar = 0;
+		this.mr = 0;
+		this.arPen = 0;
+		this.mrPen = 0;
+		this.ad = 0;
+		this.ap = 0;
+		this.sizeScaler = 0;
+		this.moveSpeedScaler = 0;
+		this.res = 0;
+		this.maxHp = 0;
+	}
+	
 	
 	public void setHp(int hp) {
 		this.hp = hp;
