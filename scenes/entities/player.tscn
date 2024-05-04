@@ -1,13 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://cr3to6p4naw2n"]
+[gd_scene load_steps=7 format=3 uid="uid://cr3to6p4naw2n"]
 
 [ext_resource type="PackedScene" uid="uid://byrfccorj3a1p" path="res://scenes/entities/entity_base.tscn" id="1_6jp3c"]
 [ext_resource type="Script" path="res://scripts/entities/player.cs" id="2_m2qmv"]
 [ext_resource type="Texture2D" uid="uid://8m4uur10xeho" path="res://assets/icon.svg" id="3_wxait"]
+[ext_resource type="PackedScene" uid="uid://msy1a60kx6ot" path="res://scenes/overlap/hurt_box.tscn" id="4_k145x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc38i"]
-size = Vector2(112, 104)
+size = Vector2(124, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoy3c"]
+size = Vector2(255.5, 205)
 
 [node name="Player" instance=ExtResource("1_6jp3c")]
+position = Vector2(1, 0)
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("2_m2qmv")
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
@@ -18,3 +25,14 @@ texture = ExtResource("3_wxait")
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_sc38i")
+
+[node name="HurtBox" parent="." index="3" instance=ExtResource("4_k145x")]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_aoy3c")
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+
+[editable path="HurtBox"]

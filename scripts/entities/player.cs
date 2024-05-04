@@ -3,6 +3,7 @@ using System;
 
 public partial class player : EntityBase
 {
+
 	public const float Speed = 300.0f;
 	public const float JumpVelocity = -400.0f;
 
@@ -36,4 +37,16 @@ public partial class player : EntityBase
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+	private void _on_hurt_box_area_entered(Area2D hitbox)
+{
+	GD.Print("gyat");
 }
+public override void _Ready()
+	{
+		baseStats.setHp(2);
+		GD.Print("player: " + baseStats.getHp());
+	}
+}
+
+
+

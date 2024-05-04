@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8jf8tko48ehm"]
+[gd_scene load_steps=7 format=3 uid="uid://b8jf8tko48ehm"]
 
 [ext_resource type="PackedScene" uid="uid://bpfvatk5qnyea" path="res://scenes/entities/enemies/enemy_base.tscn" id="1_qefpc"]
 [ext_resource type="Texture2D" uid="uid://1288bmu2tou2" path="res://assets/simple_platformer.png" id="2_k2fsf"]
+[ext_resource type="PackedScene" uid="uid://7v7rfilyclh7" path="res://scenes/overlap/hit_box.tscn" id="4_1k0i0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d1o36"]
 size = Vector2(155, 151)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5q23"]
+size = Vector2(156, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2b6xb"]
+size = Vector2(156, 152)
 
 [node name="dirt enemy" instance=ExtResource("1_qefpc")]
 
@@ -17,6 +24,15 @@ texture = ExtResource("2_k2fsf")
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_d1o36")
 
-[node name="HurtBox" type="Area2D" parent="." index="2"]
+[node name="HitBox" parent="." index="2" instance=ExtResource("4_1k0i0")]
+collision_layer = 4
+collision_mask = 2
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="HurtBox" index="0"]
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_u5q23")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("RectangleShape2D_2b6xb")
+
+[editable path="HitBox"]
+[editable path="HurtBox"]

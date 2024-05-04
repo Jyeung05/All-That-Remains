@@ -3,7 +3,8 @@ using System;
 
 public partial class Stats : Node
 {
-	protected int hp;
+	
+	[Export] protected int hp;
 	protected int regenPercent;
 	protected int ar;
 	protected int mr;
