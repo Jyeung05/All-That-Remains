@@ -10,12 +10,12 @@ using System;
 public partial class enemy_base : EntityBase
 {
 
-public override void _Ready()
-	{
-		baseStats.setHp(4);
-		GD.Print(\"enemy: \" + baseStats.getHp());
-	}
+private void _on_hurt_box_area_entered(Area2D area)
+{
+	GD.Print(\"wgag\");
 }
+}
+
 
 
 
@@ -27,5 +27,8 @@ collision_mask = 7
 script = SubResource("CSharpScript_4f2gh")
 
 [node name="HurtBox" parent="." index="2" instance=ExtResource("2_jxt0r")]
+monitorable = true
+
+[connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]

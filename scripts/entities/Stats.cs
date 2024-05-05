@@ -4,7 +4,7 @@ using System;
 public partial class Stats : Node
 {
 	
-	[Export] protected int hp;
+	protected int hp;
 	protected int regenPercent;
 	protected int ar;
 	protected int mr;

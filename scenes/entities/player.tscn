@@ -1,15 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://cr3to6p4naw2n"]
+[gd_scene load_steps=9 format=3 uid="uid://cr3to6p4naw2n"]
 
 [ext_resource type="PackedScene" uid="uid://byrfccorj3a1p" path="res://scenes/entities/entity_base.tscn" id="1_6jp3c"]
 [ext_resource type="Script" path="res://scripts/entities/player.cs" id="2_m2qmv"]
 [ext_resource type="Texture2D" uid="uid://8m4uur10xeho" path="res://assets/icon.svg" id="3_wxait"]
 [ext_resource type="PackedScene" uid="uid://msy1a60kx6ot" path="res://scenes/overlap/hurt_box.tscn" id="4_k145x"]
+[ext_resource type="PackedScene" uid="uid://7v7rfilyclh7" path="res://scenes/overlap/hit_box.tscn" id="5_g1rsd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc38i"]
 size = Vector2(124, 122)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aoy3c"]
 size = Vector2(255.5, 205)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnw2"]
+size = Vector2(242, 20)
 
 [node name="Player" instance=ExtResource("1_6jp3c")]
 position = Vector2(1, 0)
@@ -27,12 +31,22 @@ position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_sc38i")
 
 [node name="HurtBox" parent="." index="3" instance=ExtResource("4_k145x")]
+visible = false
 collision_layer = 2
 collision_mask = 4
+monitorable = true
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 shape = SubResource("RectangleShape2D_aoy3c")
 
+[node name="HitBox" parent="." index="4" instance=ExtResource("5_g1rsd")]
+monitoring = true
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2(111, 0)
+shape = SubResource("RectangleShape2D_5dnw2")
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 
 [editable path="HurtBox"]
+[editable path="HitBox"]
