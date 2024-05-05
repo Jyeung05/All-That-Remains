@@ -13,13 +13,14 @@ size = Vector2(124, 122)
 size = Vector2(255.5, 205)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnw2"]
-size = Vector2(242, 20)
+size = Vector2(234, 17)
 
 [node name="Player" instance=ExtResource("1_6jp3c")]
 position = Vector2(1, 0)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_m2qmv")
+Health = 14
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
@@ -27,7 +28,7 @@ script = ExtResource("2_m2qmv")
 texture = ExtResource("3_wxait")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(1, 0)
+position = Vector2(1, -1)
 shape = SubResource("RectangleShape2D_sc38i")
 
 [node name="HurtBox" parent="." index="3" instance=ExtResource("4_k145x")]
@@ -43,7 +44,7 @@ shape = SubResource("RectangleShape2D_aoy3c")
 monitoring = true
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(111, 0)
+position = Vector2(107, -1.5)
 shape = SubResource("RectangleShape2D_5dnw2")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

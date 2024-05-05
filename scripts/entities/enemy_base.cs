@@ -4,5 +4,8 @@ using System.ComponentModel;
 
 public partial class enemy_base : EntityBase
 {
-	public int k;
+	private void _on_hurt_box_area_entered(Area2D area)
+{
+	GD.Print("blah");
+}
 }

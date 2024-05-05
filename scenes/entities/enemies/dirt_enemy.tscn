@@ -16,14 +16,14 @@ size = Vector2(175, 171)
 
 [node name="dirt enemy" instance=ExtResource("1_qefpc")]
 script = ExtResource("2_ia7xj")
-Health = 2
+Health = 4
 RegenPercent = 0
 Armour = 0
 MagicResist = 0
-ArmourPen = 0
-MagicPen = 0
-AttackDmg = 0
-AbilityPow = 0
+ArmourPen = 3
+MagicPen = 6
+AttackDmg = 5
+AbilityPow = 2
 Size = 0
 MoveSpeed = 0
 Resistance = 0

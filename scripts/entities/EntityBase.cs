@@ -17,5 +17,7 @@ public partial class EntityBase : CharacterBody2D
 	[Export] protected int MoveSpeed;
 	[Export] protected int Resistance;
 	
-	
+	public void die() {
+		QueueFree();
+	}
 }

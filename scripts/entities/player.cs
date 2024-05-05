@@ -39,7 +39,12 @@ public partial class player : EntityBase
 	}
 	private void _on_hurt_box_area_entered(Area2D hitbox)
 {
-	GD.Print("gyat");
+	if (baseStats.getHp() == 1) {
+		die();
+	} else {
+		baseStats.setHp(baseStats.getHp() - 1);
+	}
+	GD.Print(baseStats.getHp());
 }
 public override void _Ready()
 	{
@@ -55,6 +60,8 @@ public override void _Ready()
 		baseStats.setMoveSpeedScaler(base.MoveSpeed);
 		baseStats.setRes(base.Resistance);
 	}
+	
+
 }
 
 
