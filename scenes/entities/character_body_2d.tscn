@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://b31ry137ovk0s"]
+
+[ext_resource type="Texture2D" uid="uid://8m4uur10xeho" path="res://assets/icon.svg" id="1_315d7"]
+[ext_resource type="Script" path="res://scripts/entities/character_body_2d.cs" id="1_dawr7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3el4o"]
+size = Vector2(127, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ak6v"]
+size = Vector2(127, 127)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_dawr7")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(64, 65)
+texture = ExtResource("1_315d7")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+position = Vector2(63.5, 64.5)
+shape = SubResource("RectangleShape2D_3el4o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(63.5, 63.5)
+shape = SubResource("RectangleShape2D_5ak6v")
