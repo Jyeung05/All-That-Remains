@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://scripts/world.cs" id="1_hfel5"]
 [ext_resource type="PackedScene" uid="uid://bd855icagbfg5" path="res://scenes/worlds/terrain.tscn" id="1_rn6ax"]
-[ext_resource type="PackedScene" uid="uid://b8jf8tko48ehm" path="res://scenes/entities/enemies/dirt_enemy.tscn" id="3_owhpj"]
 [ext_resource type="PackedScene" uid="uid://cr3to6p4naw2n" path="res://scenes/entities/player.tscn" id="3_vvf60"]
 [ext_resource type="PackedScene" path="res://scenes/worlds/tileMap.tscn" id="5_dsahl"]
+[ext_resource type="PackedScene" uid="uid://c225keltxctsc" path="res://scenes/entities/enemies/trial_enemy.tscn" id="5_eg3mq"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_hfel5")
@@ -30,14 +30,7 @@ position = Vector2(-346, 554)
 scale = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("3_vvf60")]
-position = Vector2(53, 1233)
+position = Vector2(753, 461)
 
-[node name="dirt enemy" parent="." instance=ExtResource("3_owhpj")]
-position = Vector2(915, 382)
-collision_layer = 1
-collision_mask = 1
-Health = 0
-ArmourPen = 0
-MagicPen = 0
-AttackDmg = 0
-AbilityPow = 0
+[node name="trial enemy" parent="." instance=ExtResource("5_eg3mq")]
+position = Vector2(314, 440)

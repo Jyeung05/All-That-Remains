@@ -37,15 +37,7 @@ public partial class player : EntityBase
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-	private void _on_hurt_box_area_entered(Area2D hitbox)
-{
-	if (baseStats.getHp() == 1) {
-		die();
-	} else {
-		baseStats.setHp(baseStats.getHp() - 1);
-	}
-	GD.Print(baseStats.getHp());
-}
+	
 public override void _Ready()
 	{
 		baseStats.setHp(base.Health);

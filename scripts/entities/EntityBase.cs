@@ -3,7 +3,7 @@ using System;
 
 public partial class EntityBase : CharacterBody2D
 {
-	protected Stats baseStats = new Stats();
+	public Stats baseStats = new Stats();
 	[ExportGroup("Stats")]
 	[Export] protected int Health;
 	[Export] protected int RegenPercent;
@@ -20,4 +20,12 @@ public partial class EntityBase : CharacterBody2D
 	public void die() {
 		QueueFree();
 	}
+	private void _on_hurt_box_area_entered(Area2D hitbox)
+{
+	Node parentNode = hitbox.GetParent();
+	EntityBase parent = (EntityBase) parentNode;
+	parent.baseStats.setHp(parent.baseStats.getHp()-1);
+	GD.Print(parent.Name + parent.baseStats.getHp());
+	
+}
 }

@@ -6,11 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://msy1a60kx6ot" path="res://scenes/overlap/hurt_box.tscn" id="4_k145x"]
 [ext_resource type="PackedScene" uid="uid://7v7rfilyclh7" path="res://scenes/overlap/hit_box.tscn" id="5_g1rsd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sc38i"]
-size = Vector2(124, 122)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lapfn"]
+size = Vector2(128, 128)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aoy3c"]
-size = Vector2(255.5, 205)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xk1tg"]
+size = Vector2(117, 108)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnw2"]
 size = Vector2(234, 17)
@@ -18,8 +18,9 @@ size = Vector2(234, 17)
 [node name="Player" instance=ExtResource("1_6jp3c")]
 position = Vector2(1, 0)
 collision_layer = 2
-collision_mask = 5
+collision_mask = 3
 script = ExtResource("2_m2qmv")
+Health = 3
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
@@ -27,23 +28,22 @@ script = ExtResource("2_m2qmv")
 texture = ExtResource("3_wxait")
 
 [node name="CollisionShape2D" parent="." index="2"]
-position = Vector2(1, -1)
-shape = SubResource("RectangleShape2D_sc38i")
+shape = SubResource("RectangleShape2D_lapfn")
 
 [node name="HurtBox" parent="." index="3" instance=ExtResource("4_k145x")]
-visible = false
 collision_layer = 2
 collision_mask = 4
-monitorable = true
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-shape = SubResource("RectangleShape2D_aoy3c")
+position = Vector2(-1.5, 0)
+shape = SubResource("RectangleShape2D_xk1tg")
 
 [node name="HitBox" parent="." index="4" instance=ExtResource("5_g1rsd")]
-monitoring = true
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(107, -1.5)
+position = Vector2(117, 9)
 shape = SubResource("RectangleShape2D_5dnw2")
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]

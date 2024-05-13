@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class dirt_enemy : enemy_base
+public partial class trial_enemy : enemy_base
 {
 	public override void _Ready()
 	{
@@ -17,7 +17,4 @@ public partial class dirt_enemy : enemy_base
 		baseStats.setMoveSpeedScaler(base.MoveSpeed);
 		baseStats.setRes(base.Resistance);
 	}
-	
-	
-	
 }

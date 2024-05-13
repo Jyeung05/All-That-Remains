@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://c225keltxctsc"]
+
+[ext_resource type="PackedScene" uid="uid://bpfvatk5qnyea" path="res://scenes/entities/enemies/enemy_base.tscn" id="1_l4m0k"]
+[ext_resource type="Script" path="res://scripts/entities/trial_enemy.cs" id="2_inbsp"]
+[ext_resource type="Texture2D" uid="uid://cm5ojvb1lcq4w" path="res://assets/Tile-Sets (64-64).png" id="3_fgd4c"]
+[ext_resource type="PackedScene" uid="uid://7v7rfilyclh7" path="res://scenes/overlap/hit_box.tscn" id="3_p0m4s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4fxc"]
+size = Vector2(218, 193)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ytjsu"]
+size = Vector2(218, 193)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u0oqa"]
+size = Vector2(218, 193)
+
+[node name="trial enemy" instance=ExtResource("1_l4m0k")]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("2_inbsp")
+Health = 3
+RegenPercent = 0
+Armour = 0
+MagicResist = 0
+ArmourPen = 0
+MagicPen = 0
+AttackDmg = 0
+AbilityPow = 0
+Size = 0
+MoveSpeed = 0
+Resistance = 0
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(-2.38419e-07, 0)
+scale = Vector2(0.56901, 0.603125)
+texture = ExtResource("3_fgd4c")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_c4fxc")
+
+[node name="HitBox" parent="." index="2" instance=ExtResource("3_p0m4s")]
+position = Vector2(0, 0.5)
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+shape = SubResource("RectangleShape2D_ytjsu")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_u0oqa")
+
+[editable path="HitBox"]
+[editable path="HurtBox"]
