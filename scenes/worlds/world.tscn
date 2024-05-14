@@ -1,36 +1,38 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5fi027348iwq"]
+[gd_scene load_steps=6 format=3 uid="uid://c5fi027348iwq"]
 
 [ext_resource type="Script" path="res://scripts/world.cs" id="1_hfel5"]
 [ext_resource type="PackedScene" uid="uid://bd855icagbfg5" path="res://scenes/worlds/terrain.tscn" id="1_rn6ax"]
-[ext_resource type="PackedScene" uid="uid://b8jf8tko48ehm" path="res://scenes/entities/enemies/dirt_enemy.tscn" id="3_owhpj"]
 [ext_resource type="PackedScene" uid="uid://cr3to6p4naw2n" path="res://scenes/entities/player.tscn" id="3_vvf60"]
+[ext_resource type="PackedScene" uid="uid://dpdmbae6uksgk" path="res://scenes/worlds/tileMap.tscn" id="5_dsahl"]
+[ext_resource type="PackedScene" path="res://scenes/entities/enemies/trial_enemy.tscn" id="5_eg3mq"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_hfel5")
 
 [node name="Terrain" parent="." instance=ExtResource("1_rn6ax")]
-position = Vector2(-4, -3)
+position = Vector2(1316, -249)
 scale = Vector2(2, 2)
 
 [node name="Terrain2" parent="." instance=ExtResource("1_rn6ax")]
-position = Vector2(4, 670)
+position = Vector2(1324, 424)
 scale = Vector2(2, 2)
 
 [node name="Terrain3" parent="." instance=ExtResource("1_rn6ax")]
-position = Vector2(-335, 308)
+position = Vector2(985, 62)
 rotation = 0.657989
 
 [node name="Terrain4" parent="." instance=ExtResource("1_rn6ax")]
-position = Vector2(1388, 249)
+position = Vector2(2708, 3)
 rotation = 2.27416
 
-[node name="Player" parent="." instance=ExtResource("3_vvf60")]
-position = Vector2(347, 390)
+[node name="Node2D" parent="." instance=ExtResource("5_dsahl")]
+position = Vector2(-346, 554)
+scale = Vector2(2, 2)
 
-[node name="dirt enemy" parent="." instance=ExtResource("3_owhpj")]
-position = Vector2(659, 473)
-collision_layer = 1
-collision_mask = 1
-Health = 0
+[node name="Player" parent="." instance=ExtResource("3_vvf60")]
+position = Vector2(753, 461)
+
+[node name="trial enemy" parent="." instance=ExtResource("5_eg3mq")]
+position = Vector2(314, 440)
 jumpHeight = 0
 numOfJumps = 0

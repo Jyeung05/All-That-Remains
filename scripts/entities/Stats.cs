@@ -175,29 +175,29 @@ public partial class Stats : Node
 	}
 	
 	   public int GetJumpHeight()
-    {
-        return jumpHeight;
-    }
+	{
+		return jumpHeight;
+	}
 
-    // Setter for JumpHeight
-    public void SetJumpHeight(int value)
-    {
-        // You can add validation logic here if needed
-        jumpHeight = -1 * value;
-    }
+	// Setter for JumpHeight
+	public void SetJumpHeight(int value)
+	{
+		// You can add validation logic here if needed
+		jumpHeight = -1 * value;
+	}
 
-    // Getter for NumOfJumps
-    public int GetNumOfJumps()
-    {
-        return numOfJumps;
-    }
+	// Getter for NumOfJumps
+	public int GetNumOfJumps()
+	{
+		return numOfJumps;
+	}
 
-    // Setter for NumOfJumps
-    public void SetNumOfJumps(int value)
-    {
-        // You can add validation logic here if needed
-        numOfJumps = value;
-    }
+	// Setter for NumOfJumps
+	public void SetNumOfJumps(int value)
+	{
+		// You can add validation logic here if needed
+		numOfJumps = value;
+	}
 	
 	
 	public void dealDmg(int enemyad, int enemyap, int enemyarpen, int enemymrpen) {
