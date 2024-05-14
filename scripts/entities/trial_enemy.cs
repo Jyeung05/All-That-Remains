@@ -5,6 +5,7 @@ public partial class trial_enemy : enemy_base
 {
 	public override void _Ready()
 	{
+		
 		baseStats.setHp(base.Health);
 		baseStats.setRegenPercent(base.RegenPercent);
 		baseStats.setAr(base.Armour);

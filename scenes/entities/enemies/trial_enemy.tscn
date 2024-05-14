@@ -16,9 +16,9 @@ size = Vector2(218, 193)
 
 [node name="trial enemy" instance=ExtResource("1_l4m0k")]
 collision_layer = 4
-collision_mask = 3
+collision_mask = 1
 script = ExtResource("2_inbsp")
-Health = 3
+Health = 9
 RegenPercent = 0
 Armour = 0
 MagicResist = 0
@@ -41,9 +41,14 @@ shape = SubResource("RectangleShape2D_c4fxc")
 
 [node name="HitBox" parent="." index="2" instance=ExtResource("3_p0m4s")]
 position = Vector2(0, 0.5)
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_ytjsu")
+
+[node name="HurtBox" parent="." index="3"]
+collision_mask = 2
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, 0.5)

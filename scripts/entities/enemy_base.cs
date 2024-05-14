@@ -5,5 +5,4 @@ using System.ComponentModel;
 public partial class enemy_base : EntityBase
 {
 
-
 }
