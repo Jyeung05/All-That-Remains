@@ -21,8 +21,6 @@ collision_layer = 2
 collision_mask = 5
 script = ExtResource("2_m2qmv")
 MoveSpeed = 500
-jumpHeight = 1000
-numOfJumps = 2
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 

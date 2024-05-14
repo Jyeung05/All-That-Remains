@@ -11,6 +11,8 @@ protected int upDown;
 	protected int jumpsLeft;
 	protected	float JumpVelocity;
 	protected float Speed;
+
+	protected float fastFallValue = 0.2f;
 	TextureProgressBar hpBar;
 	public Stats baseStats = new Stats();
 	[ExportGroup("Stats")]
@@ -25,6 +27,10 @@ protected int upDown;
 	[Export] protected int Size;
 	[Export] protected int MoveSpeed;
 	[Export] protected int Resistance;
+
+	[Export] protected int jumpHeight;
+
+	[Export] protected int numOfJumps;
 	
 		public void die() {
 		QueueFree();
@@ -58,11 +64,12 @@ public override void _Ready()
 		baseStats.setSizeScaler(Size);
 		baseStats.setMoveSpeedScaler(MoveSpeed);
 		baseStats.setRes(Resistance);
+		baseStats.SetJumpHeight(jumpHeight);
+		baseStats.SetNumOfJumps(numOfJumps);
+
 	}
 
-		[Export] protected int jumpHeight;
 
-	[Export] protected int numOfJumps;
 
 
 	
@@ -72,7 +79,7 @@ public override void _Ready()
 	public override void _PhysicsProcess(double delta)
 	{
 
-		Console.WriteLine("physics process");
+
 		Vector2 velocity = Velocity;
 
 
@@ -80,20 +87,28 @@ public override void _Ready()
 		// Add the gravity.
 		if (!IsOnFloor()){
 			velocity.Y += gravity * (float)delta;                   
-			this.jumpsLeft = this.numOfJumps; ;
 		}
 		// Handle Jump.
-		if (isJumping)
+		if(IsOnFloor()){
+			this.jumpsLeft = this.numOfJumps; ;
+		}
+		if (isJumping && jumpsLeft > 0){
+
 			velocity.Y = JumpVelocity;
- 
+		}
+
+		
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = new Vector2(leftRight, upDown);
-			Console.Write(direction.X);
+		
+
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = direction.X * Speed;
-			velocity.Y = direction.Y * Speed;
+			if(upDown != 0){
+				velocity.Y = fastFallValue * direction.Y * Speed + velocity.Y;
+			}
 		}
 		else
 		{
@@ -103,7 +118,7 @@ public override void _Ready()
 		Velocity = velocity;
 		this.leftRight = 0;
 		this.upDown = 0;
-
+		this.isJumping = false;
 		MoveAndSlide();
 	}
 /// <summary>

@@ -15,7 +15,6 @@ public partial class player : EntityBase
 }
 public override void _Ready()
 	{
-		base._Ready();
 		baseStats.setHp(base.Health);
 		baseStats.setRegenPercent(base.RegenPercent);
 		baseStats.setAr(base.Armour);
@@ -28,44 +27,45 @@ public override void _Ready()
 		baseStats.setMoveSpeedScaler(base.MoveSpeed);
 		baseStats.setRes(base.Resistance);
 		baseStats.SetJumpHeight(base.jumpHeight);
-		baseStats.SetNumOfJumps(base.Resistance);
+		baseStats.SetNumOfJumps(base.numOfJumps);
 
-		this.JumpVelocity = baseStats.GetJumpHeight();
-		this.numOfJumps = baseStats.GetNumOfJumps();
+		this.JumpVelocity = -1000;
+		this.numOfJumps = 2;
+		this.Speed = baseStats.getMoveSpeedScaler();
+
+		base._Ready();
 	}
 
 
 
 
 	public override void _PhysicsProcess(double delta){
+	
 		//movment checks followed by editing the entity base values to give commands
-		Console.WriteLine("physics process");
 		if(
-			Input.IsActionJustPressed("ui_up") && this.numOfJumps > 0){
-			Console.WriteLine("jumping");
+			Input.IsActionPressed("ui_up")){
+			
 			this.isJumping = true;
 			this.jumpsLeft--;
 		}
-		if(Input.IsActionJustReleased("ui_left") ){
+		if(Input.IsActionPressed("ui_left") ){
+		
 			this.leftRight = -1;
-			Console.WriteLine("left");	
+			
 		}
-		if(Input.IsActionJustReleased("ui_right") ){
+		if(Input.IsActionPressed("ui_right") ){
 			this.leftRight = 1;
-			Console.WriteLine("right");	
 		}
 
+		if(Input.IsActionPressed("ui_down") ){
+			this.upDown = 1;
+		}
 		
 		base._PhysicsProcess(delta);
 	}
 
 
-public override void _Process(double delta)
-	{
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		Console.WriteLine("process");
 
-	}
 
 
 }

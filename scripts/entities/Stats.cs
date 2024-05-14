@@ -176,7 +176,7 @@ public partial class Stats : Node
 	
 	   public int GetJumpHeight()
 	{
-		return jumpHeight;
+		return this.jumpHeight;
 	}
 
 	// Setter for JumpHeight
@@ -189,7 +189,7 @@ public partial class Stats : Node
 	// Getter for NumOfJumps
 	public int GetNumOfJumps()
 	{
-		return numOfJumps;
+		return this.numOfJumps;
 	}
 
 	// Setter for NumOfJumps
