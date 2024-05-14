@@ -12,6 +12,8 @@ protected int upDown;
 	protected	float JumpVelocity;
 	protected float Speed;
 
+
+// TODO: move fastvalue, jump height and num of jumps ot export. idk how to and its late, and i want to go to bed, and i feel like playing games but its late and i shid.
 	protected float fastFallValue = 0.2f;
 	TextureProgressBar hpBar;
 	public Stats baseStats = new Stats();
