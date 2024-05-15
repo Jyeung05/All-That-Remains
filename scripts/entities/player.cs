@@ -3,42 +3,63 @@ using System;
 
 public partial class player : EntityBase
 {
+public override void _Ready()
+{
+	baseStats.setHp(base.Health);
+        baseStats.setRegenPercent(base.RegenPercent);
+        baseStats.setAr(base.Armour);
+        baseStats.setMr(base.MagicResist);
+        baseStats.setArPen(base.ArmourPen);
+        baseStats.setMrPen(base.MagicPen);
+        baseStats.setAd(base.AttackDmg);
+        baseStats.setAp(base.AbilityPow);
+        baseStats.setSizeScaler(base.Size);
+        baseStats.setMoveSpeedScaler(base.MoveSpeed);
+        baseStats.setRes(base.Resistance);
+		baseStats.SetJumpHeight(base.jumpHeight);
+		baseStats.SetNumOfJumps(base.numOfJumps);
 
-	public const float Speed = 300.0f;
-	public const float JumpVelocity = -800.0f;
+		this.JumpVelocity = -1000;
+		this.numOfJumps = 2;
+		this.Speed = baseStats.getMoveSpeedScaler();
 
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-
-	public override void _PhysicsProcess(double delta)
-	{
-		Vector2 velocity = Velocity;
-
-		// Add the gravity.
-		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
-			velocity.Y = JumpVelocity;
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
-		if (direction != Vector2.Zero)
-		{
-			velocity.X = direction.X * Speed;
-		}
-		else
-		{
-			velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
-		}
-
-		Velocity = velocity;
-		MoveAndSlide();
+		base._Ready();
 	}
+
+
+
+
+	public override void _PhysicsProcess(double delta){
 	
+		//movment checks followed by editing the entity base values to give commands
+		if(
+			Input.IsActionPressed("ui_up")){
+			
+			this.isJumping = true;
+			this.jumpsLeft--;
+		}
+		if(Input.IsActionPressed("ui_left") ){
+		
+			this.leftRight = -1;
+			
+		}
+		if(Input.IsActionPressed("ui_right") ){
+			this.leftRight = 1;
+		}
+
+		if(Input.IsActionPressed("ui_down") ){
+			this.upDown = 1;
+		}
+		
+		base._PhysicsProcess(delta);
+	}
+
+
+
+
+
 }
+
 
 
 

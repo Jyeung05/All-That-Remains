@@ -15,10 +15,15 @@ public partial class Stats : Node
 	protected int sizeScaler;
 	protected int moveSpeedScaler;
 	protected int res;
+
+	protected int numOfJumps;
+
+// put in a positive, code will invert it
+	protected int jumpHeight;
 	private int maxHp;
 	private double regenCounter;
 	
-	public Stats(int hp, int regen, int ar, int mr, int arpen, int mrpen, int ad, int ap, int size, int movespeed, int res) {
+	public Stats(int hp, int regen, int ar, int mr, int arpen, int mrpen, int ad, int ap, int size, int movespeed, int res, int jumps, int jumpH) {
 		this.hp = hp;
 		this.regenPercent = regen;
 		this.ar = ar;
@@ -31,6 +36,9 @@ public partial class Stats : Node
 		this.moveSpeedScaler = movespeed;
 		this.res = res;
 		this.maxHp = hp;
+		this.numOfJumps = jumps;
+		this.jumpHeight =  -1 * jumpH;
+		
 	}
 	
 	public Stats(Stats other) {
@@ -46,6 +54,10 @@ public partial class Stats : Node
 		this.moveSpeedScaler = other.moveSpeedScaler;
 		this.res = other.res;
 		this.maxHp = other.maxHp;
+		this.jumpHeight = other.jumpHeight;
+		this.numOfJumps = other.numOfJumps;
+
+
 	}
 
 	public Stats() {
@@ -61,6 +73,8 @@ public partial class Stats : Node
 		this.moveSpeedScaler = 0;
 		this.res = 0;
 		this.maxHp = 0;
+		this.numOfJumps = 0;
+		this.jumpHeight = 0;
 	}
 	
 	
@@ -160,6 +174,30 @@ public partial class Stats : Node
 		return this.maxHp;
 	}
 	
+	   public int GetJumpHeight()
+	{
+		return this.jumpHeight;
+	}
+
+	// Setter for JumpHeight
+	public void SetJumpHeight(int value)
+	{
+		// You can add validation logic here if needed
+		jumpHeight = -1 * value;
+	}
+
+	// Getter for NumOfJumps
+	public int GetNumOfJumps()
+	{
+		return this.numOfJumps;
+	}
+
+	// Setter for NumOfJumps
+	public void SetNumOfJumps(int value)
+	{
+		// You can add validation logic here if needed
+		numOfJumps = value;
+	}
 	
 	
 	public void dealDmg(int enemyad, int enemyap, int enemyarpen, int enemymrpen) {

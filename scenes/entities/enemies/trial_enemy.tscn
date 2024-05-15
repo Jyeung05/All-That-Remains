@@ -19,6 +19,7 @@ collision_layer = 4
 collision_mask = 1
 script = ExtResource("2_inbsp")
 Health = 6
+AttackDmg = 1
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-2.38419e-07, 0)
@@ -32,7 +33,7 @@ shape = SubResource("RectangleShape2D_c4fxc")
 [node name="HitBox" parent="." index="2" instance=ExtResource("3_p0m4s")]
 position = Vector2(0, 0.5)
 collision_layer = 4
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 shape = SubResource("RectangleShape2D_ytjsu")
