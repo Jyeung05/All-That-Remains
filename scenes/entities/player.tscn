@@ -10,7 +10,7 @@
 size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xk1tg"]
-size = Vector2(155.5, 141)
+size = Vector2(128, 128)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnw2"]
 size = Vector2(234, 17)
@@ -20,7 +20,8 @@ position = Vector2(1, 0)
 collision_layer = 2
 collision_mask = 1
 script = ExtResource("2_m2qmv")
-Health = 16
+Health = 5
+AttackDmg = 1
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
@@ -35,7 +36,6 @@ collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-0.75, 2.5)
 shape = SubResource("RectangleShape2D_xk1tg")
 
 [node name="HitBox" parent="." index="4" instance=ExtResource("5_g1rsd")]
@@ -43,8 +43,14 @@ collision_layer = 2
 collision_mask = 4
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(117, 9)
+position = Vector2(-118, 9)
 shape = SubResource("RectangleShape2D_5dnw2")
+
+[node name="EntityHealthBar" parent="." index="5"]
+offset_left = -17.0
+offset_top = -85.0
+offset_right = 15.0
+offset_bottom = -73.0
 
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
 

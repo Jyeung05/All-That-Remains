@@ -38,13 +38,6 @@ public partial class player : EntityBase
 		MoveAndSlide();
 	}
 	
-public override void _Ready()
-	{
-		while (true) {
-			GD.Print(baseStats.getHp());
-		}
-
-}
 }
 
 

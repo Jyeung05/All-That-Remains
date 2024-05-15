@@ -18,17 +18,7 @@ size = Vector2(218, 193)
 collision_layer = 4
 collision_mask = 1
 script = ExtResource("2_inbsp")
-Health = 9
-RegenPercent = 0
-Armour = 0
-MagicResist = 0
-ArmourPen = 0
-MagicPen = 0
-AttackDmg = 0
-AbilityPow = 0
-Size = 0
-MoveSpeed = 0
-Resistance = 0
+Health = 6
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-2.38419e-07, 0)
@@ -53,6 +43,13 @@ collision_mask = 2
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_u0oqa")
+
+[node name="EntityHealthBar" parent="." index="4"]
+offset_left = -16.0
+offset_top = -50.0
+offset_right = 16.0
+offset_bottom = -38.0
+scale = Vector2(1, 1)
 
 [editable path="HitBox"]
 [editable path="HurtBox"]

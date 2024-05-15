@@ -25,19 +25,15 @@ public partial class EntityBase : CharacterBody2D
 {
 	Node parentNode = hitbox.GetParent();
 	EntityBase parent = (EntityBase) parentNode;
-	parent.baseStats.setHp(parent.baseStats.getHp()-1);
-	hpBar.Value = parent.baseStats.getHp();
-	if (parent.baseStats.getHp() < 0) {
+	baseStats.setHp(baseStats.getHp() - parent.baseStats.getAd());
+	hpBar.Value = baseStats.getHp();
+	if (baseStats.getHp() <= 0) {
 		die();
 	}
 }
 
 public override void _Ready()
 	{
-		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
-		hpBar.Value = baseStats.getMaxHp();
-		hpBar.MaxValue = baseStats.getMaxHp();
-
 		baseStats.setHp(Health);
 		baseStats.setRegenPercent(RegenPercent);
 		baseStats.setAr(Armour);
@@ -49,7 +45,11 @@ public override void _Ready()
 		baseStats.setSizeScaler(Size);
 		baseStats.setMoveSpeedScaler(MoveSpeed);
 		baseStats.setRes(Resistance);
+		baseStats.setMaxHp(Health);
+		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
+		hpBar.MaxValue = baseStats.getMaxHp();
+		hpBar.Value = baseStats.getMaxHp();
+		GD.Print(hpBar.Value);
 	}
-	
 
 }
