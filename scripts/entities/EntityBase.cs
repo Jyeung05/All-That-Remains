@@ -69,6 +69,7 @@ public override void _Ready()
 		this.JumpVelocity = -1000;
 		this.numOfJumps = 2;
 		this.Speed = baseStats.getMoveSpeedScaler();
+		
 
 	}
 	// Get the gravity from the project settings to be synced with RigidBody nodes.

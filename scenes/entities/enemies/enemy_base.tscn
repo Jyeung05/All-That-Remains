@@ -10,11 +10,6 @@ using System;
 public partial class enemy_base : EntityBase
 {
 
-public override void _Ready()
-	{
-		baseStats.setHp(4);
-		GD.Print(\"enemy: \" + baseStats.getHp());
-	}
 }
 
 
