@@ -4,10 +4,16 @@ using System;
 public abstract partial class EntityBase : CharacterBody2D
 {
 
+
+//set this to 1 for the entitiy to move to the right, -1 to move to the left, and 0 to not move
 protected int leftRight;
+// set this value to -1 to move up, 1 to move down, and 0 to not move
 protected int upDown;
 
+//set this value to true ot have entity jump
 	protected bool isJumping;
+
+
 	protected int jumpsLeft;
 	protected	float JumpVelocity;
 	protected float Speed;
