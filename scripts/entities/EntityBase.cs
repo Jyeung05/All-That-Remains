@@ -3,24 +3,19 @@ using System;
 
 public abstract partial class EntityBase : CharacterBody2D
 {
-
-
-//set this to 1 for the entitiy to move to the right, -1 to move to the left, and 0 to not move
-protected int leftRight;
-// set this value to -1 to move up, 1 to move down, and 0 to not move
-protected int upDown;
-
-//set this value to true ot have entity jump
+	protected int leftRight;
+	protected int upDown;
 	protected bool isJumping;
+	protected float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	protected bool apexOfJump;
 
 	protected int jumpsLeft;
 	protected	float JumpVelocity;
 	protected float Speed;
 
-
 // TODO: move fastvalue, jump height and num of jumps ot export. idk how to and its late, and i want to go to bed, and i feel like playing games but its late and i shid.
-	protected float fastFallValue = 0.2f;
+	protected float fastFallValue =  500f;
 	TextureProgressBar hpBar;
 	public Stats baseStats = new Stats();
 	[ExportGroup("Stats")]
@@ -35,9 +30,7 @@ protected int upDown;
 	[Export] protected int Size;
 	[Export] protected int MoveSpeed;
 	[Export] protected int Resistance;
-
 	[Export] protected int jumpHeight;
-
 	[Export] protected int numOfJumps;
 	
 		public void die() {
@@ -47,9 +40,9 @@ protected int upDown;
 {
 	Node parentNode = hitbox.GetParent();
 	EntityBase parent = (EntityBase) parentNode;
-	parent.baseStats.setHp(parent.baseStats.getHp()-1);
-	hpBar.Value = parent.baseStats.getHp();
-	if (parent.baseStats.getHp() < 0) {
+	baseStats.setHp(baseStats.getHp() - parent.baseStats.getAd());
+	hpBar.Value = baseStats.getHp();
+	if (baseStats.getHp() <= 0) {
 		die();
 	}
 }
@@ -60,8 +53,8 @@ public override void _Ready()
 		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
 		hpBar.Value = baseStats.getMaxHp();
 		hpBar.MaxValue = baseStats.getMaxHp();
-
 		baseStats.setHp(Health);
+		baseStats.setMaxHp(Health);
 		baseStats.setRegenPercent(RegenPercent);
 		baseStats.setAr(Armour);
 		baseStats.setMr(MagicResist);
@@ -74,48 +67,51 @@ public override void _Ready()
 		baseStats.setRes(Resistance);
 		baseStats.SetJumpHeight(jumpHeight);
 		baseStats.SetNumOfJumps(numOfJumps);
-
+		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
+		hpBar.MaxValue = baseStats.getMaxHp();
+		hpBar.Value = baseStats.getMaxHp();
+		this.JumpVelocity = -500;
+		this.numOfJumps = 2;
+		this.Speed = baseStats.getMoveSpeedScaler();
+		
+  
 	}
-
-
-
-
-	
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
-
 	public override void _PhysicsProcess(double delta)
 	{
-
-
+		GD.Print(this.gravity);
 		Vector2 velocity = Velocity;
-
-
 
 		// Add the gravity.
 		if (!IsOnFloor()){
-			velocity.Y += gravity * (float)delta;                   
+			velocity.Y += gravity * (float)delta;   
+			  
 		}
+			if(velocity.Y >= 0){
+				this.apexOfJump = true;
+			} else {
+				this.apexOfJump = false;
+			}
+			 
 		// Handle Jump.
 		if(IsOnFloor()){
+			this.apexOfJump = false;
+
 			this.jumpsLeft = this.numOfJumps; ;
 		}
 		if (isJumping && jumpsLeft > 0){
 
 			velocity.Y = JumpVelocity;
-		}
-
-		
+		}	
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = new Vector2(leftRight, upDown);
-		
 
 		if (direction != Vector2.Zero)
 		{
 			velocity.X = direction.X * Speed;
 			if(upDown != 0){
-				velocity.Y = fastFallValue * direction.Y * Speed + velocity.Y;
+				velocity.Y = fastFallValue + velocity.Y;
 			}
 		}
 		else
@@ -132,17 +128,4 @@ public override void _Ready()
 /// <summary>
 /// edit the entities "lr" variable with this function to define how it moves left to right
 /// </summary>
-
-
-
-public override void _Process(double delta)
-	{
-		// Called every frame. 'delta' is the elapsed time since the previous frame.
-		Console.WriteLine("process");
-
-	}
-
 }
-	
-
-

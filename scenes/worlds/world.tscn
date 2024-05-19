@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bd855icagbfg5" path="res://scenes/worlds/terrain.tscn" id="1_rn6ax"]
 [ext_resource type="PackedScene" uid="uid://cr3to6p4naw2n" path="res://scenes/entities/player.tscn" id="3_vvf60"]
 [ext_resource type="PackedScene" uid="uid://ctsh4wi4d0dg6" path="res://scenes/worlds/tileMap.tscn" id="5_dsahl"]
-[ext_resource type="PackedScene" path="res://scenes/entities/enemies/trial_enemy.tscn" id="5_eg3mq"]
+[ext_resource type="PackedScene" uid="uid://c225keltxctsc" path="res://scenes/entities/enemies/trial_enemy.tscn" id="5_eg3mq"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_hfel5")
@@ -34,5 +34,3 @@ position = Vector2(753, 461)
 
 [node name="trial enemy" parent="." instance=ExtResource("5_eg3mq")]
 position = Vector2(314, 440)
-jumpHeight = 0
-numOfJumps = 0

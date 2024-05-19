@@ -1,49 +1,26 @@
 using Godot;
 using System;
 
-public partial class player : EntityBase
-{
+public partial class player : EntityBase{
 
+	float originalGravity;
+	float acceleratedGravity;
 
+public override void _Ready(){
+	 base._Ready();
+	 originalGravity = gravity;
+	 acceleratedGravity = gravity * 2;
 
-	// Get the gravity from the project settings to be synced with RigidBody nodes.
-
-
-	private void _on_hurt_box_area_entered(Area2D hitbox)
-{
-	GD.Print("gyat");
 }
-public override void _Ready()
-	{
-		baseStats.setHp(base.Health);
-		baseStats.setRegenPercent(base.RegenPercent);
-		baseStats.setAr(base.Armour);
-		baseStats.setMr(base.MagicResist);
-		baseStats.setArPen(base.ArmourPen);
-		baseStats.setMrPen(base.MagicPen);
-		baseStats.setAd(base.AttackDmg);
-		baseStats.setAp(base.AbilityPow);
-		baseStats.setSizeScaler(base.Size);
-		baseStats.setMoveSpeedScaler(base.MoveSpeed);
-		baseStats.setRes(base.Resistance);
-		baseStats.SetJumpHeight(base.jumpHeight);
-		baseStats.SetNumOfJumps(base.numOfJumps);
-
-		this.JumpVelocity = -1000;
-		this.numOfJumps = 2;
-		this.Speed = baseStats.getMoveSpeedScaler();
-
-		base._Ready();
-	}
-
 
 
 
 	public override void _PhysicsProcess(double delta){
+
 	
 		//movment checks followed by editing the entity base values to give commands
 		if(
-			Input.IsActionPressed("ui_up")){
+			Input.IsActionJustPressed("ui_up")){
 			
 			this.isJumping = true;
 			this.jumpsLeft--;
@@ -57,10 +34,19 @@ public override void _Ready()
 			this.leftRight = 1;
 		}
 
-		if(Input.IsActionPressed("ui_down") ){
+		if(Input.IsActionJustPressed("ui_down") ){
 			this.upDown = 1;
 		}
-		
+
+		if(this.apexOfJump ){
+			this.gravity = this.acceleratedGravity;
+		}
+		else{
+			this.gravity = this.originalGravity;
+
+		}
+
+
 		base._PhysicsProcess(delta);
 	}
 
