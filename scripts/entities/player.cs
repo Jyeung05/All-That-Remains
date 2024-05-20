@@ -1,14 +1,19 @@
 using Godot;
 using System;
 
-public partial class player : EntityBase
-{
+public partial class player : EntityBase{
+
+	float originalGravity;
+	float acceleratedGravity;
+
 	
 private CollisionShape2D hitboxShape;
 	private Timer attackTimer;
 
 	public override void _Ready()
 	{
+		originalGravity = gravity;
+	 	acceleratedGravity = gravity * 2;
 		hitboxShape = GetNode<CollisionShape2D>("HitBox/CollisionShape2D");
 
 		// Create and configure a timer for the attack duration
@@ -42,9 +47,11 @@ private CollisionShape2D hitboxShape;
 
 	public override void _PhysicsProcess(double delta){
 
+
 	
 		//movment checks followed by editing the entity base values to give commands
-		if(Input.IsActionPressed("ui_up")){
+		if(
+			Input.IsActionJustPressed("ui_up")){
 			
 			this.isJumping = true;
 			this.jumpsLeft--;
@@ -58,10 +65,19 @@ private CollisionShape2D hitboxShape;
 			this.leftRight = 1;
 		}
 
-		if(Input.IsActionPressed("ui_down") ){
+		if(Input.IsActionJustPressed("ui_down") ){
 			this.upDown = 1;
 		}
-		
+
+		if(this.apexOfJump ){
+			this.gravity = this.acceleratedGravity;
+		}
+		else{
+			this.gravity = this.originalGravity;
+
+		}
+
+
 		base._PhysicsProcess(delta);
 	}
 
