@@ -28,6 +28,8 @@ public abstract partial class EntityBase : CharacterBody2D
 	[Export] protected int Resistance;
 	[Export] protected int jumpHeight;
 	[Export] protected int numOfJumps;
+	[Export] protected bool knockbackable = false;
+	[Export] protected float kbModifier = 0.1f;
 	
 		public void die() {
 		QueueFree();

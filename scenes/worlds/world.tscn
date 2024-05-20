@@ -34,3 +34,5 @@ position = Vector2(753, 461)
 
 [node name="trial enemy" parent="." instance=ExtResource("5_eg3mq")]
 position = Vector2(314, 440)
+knockbackable = false
+kbModifier = 0.1
