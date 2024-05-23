@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://ccn0jmm3y5x1s"]
-
-[node name="projectile_base" type="Area2D"]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]

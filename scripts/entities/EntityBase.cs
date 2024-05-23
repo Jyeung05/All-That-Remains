@@ -73,7 +73,7 @@ public override void _Ready()
 		hpBar.MaxValue = baseStats.getMaxHp();
 		hpBar.Value = baseStats.getMaxHp();
 		this.JumpVelocity = -500;
-		this.numOfJumps = 2;
+		baseStats.SetNumOfJumps(numOfJumps);
 		this.Speed = baseStats.getMoveSpeedScaler();
 		
   
