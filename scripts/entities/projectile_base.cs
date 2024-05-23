@@ -24,6 +24,10 @@ public partial class projectile_base : Area2D
 	private void _on_body_entered() {
 		destroy();
 	}
+
+	private void _on_visible_on_screen_notifier_2d_screen_exited() {
+		destroy();
+	}
 }
 
 
