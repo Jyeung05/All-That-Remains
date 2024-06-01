@@ -24,7 +24,7 @@ Armour = 0
 MagicResist = 0
 ArmourPen = 1
 MagicPen = 1
-AttackDmg = 10
+AttackDmg = 2
 AbilityPow = 1
 Size = 0
 MoveSpeed = 0
@@ -33,6 +33,7 @@ jumpHeight = 0
 numOfJumps = 0
 knockbackable = false
 kbModifier = 0.1
+metadata/_edit_group_ = true
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(-2.38419e-07, 0)

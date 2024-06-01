@@ -1,14 +1,21 @@
 using Godot;
 using System;
+using System.Numerics;
 
 public partial class projectile_base : Area2D
 {
 	[Export] protected int damage;
 	[Export] protected float speed = 100f;
 
+	private Godot.Vector2 direction;
+
+    public Godot.Vector2 Direction {
+        get { return direction; }
+        set { direction = value.Normalized(); }
+    }
     
     public override void _PhysicsProcess(double delta){
-		Vector2 direction = new Vector2(1, 0).Rotated(Rotation);
+		
 		GlobalPosition += speed * direction * (float) delta;
 		
 	}
@@ -17,11 +24,11 @@ public partial class projectile_base : Area2D
 		QueueFree();
 	}
 
-	private void _on_area_entered() {
+	public void _on_area_entered(Area2D area) {
 		destroy();
 	}
 
-	private void _on_body_entered() {
+	public void _on_body_entered(Area2D body) {
 		destroy();
 	}
 

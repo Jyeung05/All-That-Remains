@@ -81,7 +81,7 @@ public override void _Ready()
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public override void _PhysicsProcess(double delta)
 	{
-		GD.Print(this.gravity);
+
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
