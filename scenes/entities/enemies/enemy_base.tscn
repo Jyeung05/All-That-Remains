@@ -1,28 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpfvatk5qnyea"]
+[gd_scene load_steps=5 format=3 uid="uid://bpfvatk5qnyea"]
 
 [ext_resource type="PackedScene" uid="uid://byrfccorj3a1p" path="res://scenes/entities/entity_base.tscn" id="1_vk0d3"]
+[ext_resource type="Script" path="res://scripts/entities/enemy_base.cs" id="2_bjvcc"]
 [ext_resource type="PackedScene" uid="uid://msy1a60kx6ot" path="res://scenes/overlap/hurt_box.tscn" id="2_jxt0r"]
 
-[sub_resource type="CSharpScript" id="CSharpScript_4f2gh"]
-script/source = "using Godot;
-using System;
-
-public partial class enemy_base : EntityBase
-{
-
-}
-
-
-
-"
+[sub_resource type="CircleShape2D" id="CircleShape2D_hmft2"]
+radius = 399.382
 
 [node name="Enemy Base" instance=ExtResource("1_vk0d3")]
-script = SubResource("CSharpScript_4f2gh")
+script = ExtResource("2_bjvcc")
 
 [node name="HurtBox" parent="." index="2" instance=ExtResource("2_jxt0r")]
 collision_layer = 0
 collision_mask = 0
 
+[node name="Detection Area" type="Area2D" parent="." index="4"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area" index="0"]
+shape = SubResource("CircleShape2D_hmft2")
+
 [connection signal="area_entered" from="HurtBox" to="." method="_on_hurt_box_area_entered"]
+[connection signal="area_entered" from="Detection Area" to="." method="_on_detection_area_entered"]
+[connection signal="area_exited" from="Detection Area" to="." method="_on_detection_area_exited"]
 
 [editable path="HurtBox"]
