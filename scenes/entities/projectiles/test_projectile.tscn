@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy80tw6l82buu"]
+
+[ext_resource type="PackedScene" uid="uid://ccn0jmm3y5x1s" path="res://scenes/entities/projectiles/projectile_base.tscn" id="1_sn3mw"]
+[ext_resource type="Texture2D" uid="uid://nofbeq3idr14" path="res://assets/WoodSword.png" id="2_0g12i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmyyl"]
+size = Vector2(168, 20)
+
+[node name="test projectile" groups=["Projectiles"] instance=ExtResource("1_sn3mw")]
+collision_mask = 0
+
+[node name="Sprite2D" parent="." index="0"]
+rotation = 0.785398
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_0g12i")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("RectangleShape2D_mmyyl")

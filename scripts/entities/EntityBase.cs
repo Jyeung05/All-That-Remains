@@ -6,12 +6,16 @@ public abstract partial class EntityBase : CharacterBody2D
 	protected int leftRight;
 	protected int upDown;
 	protected bool isJumping;
+	protected float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+
+	protected bool apexOfJump;
+
 	protected int jumpsLeft;
 	protected	float JumpVelocity;
 	protected float Speed;
 
 // TODO: move fastvalue, jump height and num of jumps ot export. idk how to and its late, and i want to go to bed, and i feel like playing games but its late and i shid.
-	protected float fastFallValue = 0.2f;
+	protected float fastFallValue =  500f;
 	TextureProgressBar hpBar;
 	public Stats baseStats = new Stats();
 	[ExportGroup("Stats")]
@@ -28,6 +32,8 @@ public abstract partial class EntityBase : CharacterBody2D
 	[Export] protected int Resistance;
 	[Export] protected int jumpHeight;
 	[Export] protected int numOfJumps;
+	[Export] protected bool knockbackable = false;
+	[Export] protected float kbModifier = 0.1f;
 	
 		public void die() {
 		QueueFree();
@@ -67,24 +73,33 @@ public override void _Ready()
 		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
 		hpBar.MaxValue = baseStats.getMaxHp();
 		hpBar.Value = baseStats.getMaxHp();
-		this.JumpVelocity = -1000;
-		this.numOfJumps = 2;
+		this.JumpVelocity = -500;
+		baseStats.SetNumOfJumps(numOfJumps);
 		this.Speed = baseStats.getMoveSpeedScaler();
 		
-
+  
 	}
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
-	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	public override void _PhysicsProcess(double delta)
 	{
+
 		Vector2 velocity = Velocity;
 
 		// Add the gravity.
 		if (!IsOnFloor()){
-			velocity.Y += gravity * (float)delta;                   
+			velocity.Y += gravity * (float)delta;   
+			  
 		}
+			if(velocity.Y >= 0){
+				this.apexOfJump = true;
+			} else {
+				this.apexOfJump = false;
+			}
+			 
 		// Handle Jump.
 		if(IsOnFloor()){
+			this.apexOfJump = false;
+
 			this.jumpsLeft = this.numOfJumps; ;
 		}
 		if (isJumping && jumpsLeft > 0){
@@ -99,7 +114,7 @@ public override void _Ready()
 		{
 			velocity.X = direction.X * Speed;
 			if(upDown != 0){
-				velocity.Y = fastFallValue * direction.Y * Speed + velocity.Y;
+				velocity.Y = fastFallValue + velocity.Y;
 			}
 		}
 		else
