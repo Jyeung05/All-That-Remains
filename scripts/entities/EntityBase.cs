@@ -48,6 +48,15 @@ public abstract partial class EntityBase : CharacterBody2D
 		die();
 	}
 }
+	public void TakeDamage(int amount)
+	{
+		/*baseStats.setHp(baseStats.getHp() - amount);
+		hpBar.Value = baseStats.getHp();
+		if (baseStats.getHp() <= 0)
+		{
+			die();
+		}*/
+	}
 
 public override void _Ready()
 	{

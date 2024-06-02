@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5fi027348iwq"]
+[gd_scene load_steps=6 format=3 uid="uid://c5fi027348iwq"]
 
 [ext_resource type="Script" path="res://scripts/world.cs" id="1_hfel5"]
 [ext_resource type="PackedScene" uid="uid://bd855icagbfg5" path="res://scenes/worlds/terrain.tscn" id="1_rn6ax"]
+[ext_resource type="PackedScene" uid="uid://cy80tw6l82buu" path="res://scenes/entities/projectiles/test_projectile.tscn" id="3_bdr53"]
 [ext_resource type="PackedScene" uid="uid://cr3to6p4naw2n" path="res://scenes/entities/player.tscn" id="3_vvf60"]
 [ext_resource type="PackedScene" uid="uid://c225keltxctsc" path="res://scenes/entities/enemies/trial_enemy.tscn" id="5_eg3mq"]
 
@@ -11,6 +12,7 @@ metadata/_edit_horizontal_guides_ = [-239.0]
 
 [node name="Player" parent="." instance=ExtResource("3_vvf60")]
 position = Vector2(788, -143)
+DaggerScene = ExtResource("3_bdr53")
 numOfJumps = 5
 
 [node name="trial enemy" parent="." instance=ExtResource("5_eg3mq")]

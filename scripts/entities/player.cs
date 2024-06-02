@@ -49,11 +49,13 @@ public partial class player : EntityBase{
 
 	private void ranged(Godot.Vector2 dir) {
 		projectile_base daggerInstance = DaggerScene.Instantiate<projectile_base>();
-        AddChild(daggerInstance);   
+		Node rootNode = GetTree().Root;
+		Node mainScene = rootNode.GetNode("World");
+		mainScene.AddChild(daggerInstance);
 		daggerInstance.GlobalPosition = this.GlobalPosition;
 		daggerInstance.Direction = dir;
 		float angle = daggerInstance.Direction.Angle();
-        daggerInstance.Rotation = angle;
+		daggerInstance.Rotation = angle;
 	}
 		
 	public override void _PhysicsProcess(double delta){
@@ -91,7 +93,6 @@ public partial class player : EntityBase{
 		if (Input.IsActionJustPressed("attack")) {
 			Godot.Vector2 daggerDirection = GlobalPosition.DirectionTo(GetGlobalMousePosition());
 			ranged(daggerDirection);
-			GD.Print(daggerDirection);
 			
 		}
 
