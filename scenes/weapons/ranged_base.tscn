@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dds81ytcnpggn"]
+
+[ext_resource type="PackedScene" uid="uid://nq7tbgekjxgi" path="res://scenes/weapons/weapon_base.tscn" id="1_hucyd"]
+
+[node name="ranged_base" instance=ExtResource("1_hucyd")]

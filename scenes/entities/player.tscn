@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cr3to6p4naw2n"]
+[gd_scene load_steps=10 format=3 uid="uid://cr3to6p4naw2n"]
 
 [ext_resource type="PackedScene" uid="uid://byrfccorj3a1p" path="res://scenes/entities/entity_base.tscn" id="1_6jp3c"]
 [ext_resource type="Script" path="res://scripts/entities/player.cs" id="2_m2qmv"]
 [ext_resource type="Texture2D" uid="uid://8m4uur10xeho" path="res://assets/icon.svg" id="3_wxait"]
 [ext_resource type="PackedScene" uid="uid://msy1a60kx6ot" path="res://scenes/overlap/hurt_box.tscn" id="4_k145x"]
 [ext_resource type="PackedScene" uid="uid://7v7rfilyclh7" path="res://scenes/overlap/hit_box.tscn" id="5_g1rsd"]
+[ext_resource type="Texture2D" uid="uid://nofbeq3idr14" path="res://assets/WoodSword.png" id="6_nuofx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sc38i"]
 size = Vector2(124, 122)
@@ -13,16 +14,20 @@ size = Vector2(124, 122)
 size = Vector2(124, 121)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dnw2"]
-size = Vector2(242, 20)
+size = Vector2(104, 27)
 
 [node name="Player" instance=ExtResource("1_6jp3c")]
 position = Vector2(1, 0)
 collision_layer = 2
 collision_mask = 1
 script = ExtResource("2_m2qmv")
-Health = 5
+Health = 20
+Armour = 2
+MagicResist = 1
 AttackDmg = 3
+AbilityPow = 1
 MoveSpeed = 500
+numOfJumps = 4
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
@@ -48,8 +53,16 @@ collision_mask = 0
 monitoring = true
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-position = Vector2(124, 2)
+position = Vector2(140, 2.5)
 shape = SubResource("RectangleShape2D_5dnw2")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="HitBox" index="1"]
+position = Vector2(104, 2)
+rotation = 0.785398
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_nuofx")
+offset = Vector2(1, 0)
 
 [node name="EntityHealthBar" parent="." index="5"]
 offset_left = -17.0
