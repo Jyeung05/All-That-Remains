@@ -87,7 +87,6 @@ public override void _Ready()
 
 		// Add the gravity.
 		if (!IsOnFloor()){
-			GD.Print(this.gravity);
 			velocity.Y += this.gravity * (float)delta;   
 			  
 		}
@@ -98,15 +97,16 @@ public override void _Ready()
 			}
 			 
 		// Handle Jump.
-		if(IsOnFloor()){
-			this.apexOfJump = false;
-
-			this.jumpsLeft = this.numOfJumps; ;
-		}
 		if (isJumping && jumpsLeft > 0){
 
 			velocity.Y = JumpVelocity;
 		}	
+		GD.Print(jumpsLeft);
+		if(IsOnFloor()){
+			this.apexOfJump = false;
+
+			this.jumpsLeft = this.numOfJumps; 
+		}
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = new Vector2(leftRight, upDown);

@@ -9,6 +9,9 @@ public partial class player : EntityBase{
 	bool dashing = false;
 	double dashTimer = 0;
 	
+	float jumpBufferTimer = 0f;
+	int dashesLeft = 1;
+
 	float originalSpeed = 500f;
 	float acceleratedSpeed = 1000f;
 
@@ -57,11 +60,19 @@ private CollisionShape2D hitboxShape;
 		
 	
 		//movment checks followed by editing the entity base values to give commands
+		if(!IsOnFloor()){
+			this.jumpBufferTimer += (float)delta;
+		}
 		if(
 			Input.IsActionJustPressed("jump")){
 			
-			this.isJumping = true;
-			this.jumpsLeft--;
+				this.isJumping = true;
+				this.jumpsLeft--;
+			if(this.jumpBufferTimer < 0.2){
+			
+				this.jumpsLeft++;
+			}
+
 		}
 		if(Input.IsActionPressed("left") ){
 		
@@ -79,10 +90,13 @@ private CollisionShape2D hitboxShape;
 		if(Input.IsActionJustPressed("up") ){
 			this.upDown = -1;
 		}
+
+
+		
 		if(Input.IsActionJustPressed("dash") ){
-			if(this.jumpsLeft > 0 && !this.dashing){
+			if(this.dashesLeft > 0 && !this.dashing){
 				this.dashing = true;
-				this.jumpsLeft--;
+				this.dashesLeft--;
 				
 		}
 
@@ -112,6 +126,10 @@ private CollisionShape2D hitboxShape;
 
 		}
 	
+		if(IsOnFloor()){
+			this.dashesLeft = 1;
+			this.jumpBufferTimer = 0;
+		}
 		base._PhysicsProcess(delta);
 	}
 
