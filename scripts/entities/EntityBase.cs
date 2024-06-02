@@ -51,6 +51,7 @@ public abstract partial class EntityBase : CharacterBody2D
 
 public override void _Ready()
 	{
+		
 		Console.WriteLine("ready");
 		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
 		hpBar.Value = baseStats.getMaxHp();
