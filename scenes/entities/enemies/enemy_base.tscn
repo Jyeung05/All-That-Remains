@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://msy1a60kx6ot" path="res://scenes/overlap/hurt_box.tscn" id="2_jxt0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hmft2"]
-radius = 399.382
+radius = 179.025
 
 [node name="Enemy Base" instance=ExtResource("1_vk0d3")]
 script = ExtResource("2_bjvcc")

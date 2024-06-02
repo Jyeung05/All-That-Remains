@@ -30,15 +30,16 @@ public partial class enemy_base : EntityBase
 		if(this.isRight){
 			this.leftRight = 1;
 		}
+		GD.Print(target.Position);
 	}
 protected void _on_detection_area_entered(Area2D area)
 {
-	inArea = true;
+	this.inArea = true;
 	// Replace with function body.
 }
 protected void _on_detection_area_exited(Area2D area)
 {
-	inArea = false;
+	this.inArea = false;
 	// Replace with function body.
 }
 }	

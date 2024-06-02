@@ -14,7 +14,7 @@ position = Vector2(788, -143)
 numOfJumps = 5
 
 [node name="trial enemy" parent="." instance=ExtResource("5_eg3mq")]
-position = Vector2(882, 401)
+position = Vector2(1222, -215)
 
 [node name="Terrain" parent="." instance=ExtResource("1_rn6ax")]
 position = Vector2(315, -23)
@@ -31,3 +31,6 @@ rotation = 0.657989
 [node name="Terrain4" parent="." instance=ExtResource("1_rn6ax")]
 position = Vector2(1667, 142)
 rotation = 2.27416
+
+[node name="trial enemy2" parent="." instance=ExtResource("5_eg3mq")]
+position = Vector2(346, -234)
