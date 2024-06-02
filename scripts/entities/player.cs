@@ -1,22 +1,26 @@
 using Godot;
 using System;
-using System.Numerics;
-using System.Runtime.CompilerServices;
+
 public partial class player : EntityBase{
 
 	float originalGravity;
 	float acceleratedGravity;
-	[Export] public PackedScene DaggerScene { get; set; }
+
+	bool dashing = false;
+	double dashTimer = 0;
 	
-	private CollisionShape2D hitboxShape;
+	float originalSpeed = 500f;
+	float acceleratedSpeed = 1000f;
+
+private CollisionShape2D hitboxShape;
 	private Timer attackTimer;
 
 	public override void _Ready()
 	{
-		originalGravity = gravity;
+		originalGravity = gravity+500f;
 	 	acceleratedGravity = gravity * 2;
+
 		hitboxShape = GetNode<CollisionShape2D>("HitBox/CollisionShape2D");
-		DaggerScene = (PackedScene)ResourceLoader.Load("res://scenes/entities/projectiles/test_projectile.tscn");
 
 		// Create and configure a timer for the attack duration
 		attackTimer = new Timer();
@@ -24,16 +28,17 @@ public partial class player : EntityBase{
 		attackTimer.OneShot = true;
 		AddChild(attackTimer);
 		attackTimer.Timeout += OnAttackTimeout;
-		GD.Print(hitboxShape);
+		GD.Print(hitboxShape);	
 		base._Ready();
 	}
 
-	/*public override void _Input(InputEvent @event)
+	public override void _Input(InputEvent @event)
 	{
+
 		if (@event is InputEventMouseButton mouseEvent && mouseEvent.Pressed && mouseEvent.ButtonIndex == MouseButton.Left)
 
 			Attack();
-	}*/
+	}
 	
 
 	private void Attack()
@@ -47,38 +52,43 @@ public partial class player : EntityBase{
 		hitboxShape.Disabled = true;
 	}
 
-	private void ranged(Godot.Vector2 dir) {
-		projectile_base daggerInstance = DaggerScene.Instantiate<projectile_base>();
-        AddChild(daggerInstance);   
-		daggerInstance.GlobalPosition = this.GlobalPosition;
-		daggerInstance.Direction = dir;
-		float angle = daggerInstance.Direction.Angle();
-        daggerInstance.Rotation = angle;
-	}
-		
 	public override void _PhysicsProcess(double delta){
-
-
+	
+		
 	
 		//movment checks followed by editing the entity base values to give commands
 		if(
-			Input.IsActionJustPressed("ui_up")){
+			Input.IsActionJustPressed("jump")){
 			
 			this.isJumping = true;
 			this.jumpsLeft--;
 		}
-		if(Input.IsActionPressed("ui_left") ){
+		if(Input.IsActionPressed("left") ){
 		
 			this.leftRight = -1;
 			
 		}
-		if(Input.IsActionPressed("ui_right") ){
+		if(Input.IsActionPressed("right") ){
 			this.leftRight = 1;
 		}
 
-		if(Input.IsActionJustPressed("ui_down") ){
+		if(Input.IsActionJustPressed("down") ){
 			this.upDown = 1;
 		}
+
+		if(Input.IsActionJustPressed("up") ){
+			this.upDown = -1;
+		}
+		if(Input.IsActionJustPressed("dash") ){
+			if(this.jumpsLeft > 0 && !this.dashing){
+				this.dashing = true;
+				this.jumpsLeft--;
+				
+		}
+
+		
+		}
+
 
 		if(this.apexOfJump ){
 			this.gravity = this.acceleratedGravity;
@@ -88,14 +98,20 @@ public partial class player : EntityBase{
 
 		}
 
-		if (Input.IsActionJustPressed("attack")) {
-			Godot.Vector2 daggerDirection = GlobalPosition.DirectionTo(GetGlobalMousePosition());
-			ranged(daggerDirection);
-			GD.Print(daggerDirection);
+		if(this.dashing){
 			
+			this.dashTimer += delta;
+			this.Speed =  acceleratedSpeed;
+			this.gravity = 0;
+			if(this.dashTimer > 0.2){
+				this.dashing = false;
+				this.dashTimer = 0;
+				this.Speed = originalSpeed;
+				this.gravity = this.originalGravity;
+			}
+
 		}
-
-
+	
 		base._PhysicsProcess(delta);
 	}
 

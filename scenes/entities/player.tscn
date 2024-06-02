@@ -27,7 +27,8 @@ MagicResist = 1
 AttackDmg = 3
 AbilityPow = 1
 MoveSpeed = 500
-numOfJumps = 4
+jumpHeight = 700
+numOfJumps = 2
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 

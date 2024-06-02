@@ -6,7 +6,7 @@ public abstract partial class EntityBase : CharacterBody2D
 	protected int leftRight;
 	protected int upDown;
 	protected bool isJumping;
-	protected float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
+	protected float gravity = 980f;
 
 	protected bool apexOfJump;
 
@@ -72,7 +72,7 @@ public override void _Ready()
 		hpBar = GetNode<TextureProgressBar>("EntityHealthBar");
 		hpBar.MaxValue = baseStats.getMaxHp();
 		hpBar.Value = baseStats.getMaxHp();
-		this.JumpVelocity = -500;
+		this.JumpVelocity = baseStats.GetJumpHeight();
 		baseStats.SetNumOfJumps(numOfJumps);
 		this.Speed = baseStats.getMoveSpeedScaler();
 		
@@ -86,7 +86,8 @@ public override void _Ready()
 
 		// Add the gravity.
 		if (!IsOnFloor()){
-			velocity.Y += gravity * (float)delta;   
+			GD.Print(this.gravity);
+			velocity.Y += this.gravity * (float)delta;   
 			  
 		}
 			if(velocity.Y >= 0){
@@ -125,6 +126,8 @@ public override void _Ready()
 		this.leftRight = 0;
 		this.upDown = 0;
 		this.isJumping = false;
+				
+
 		MoveAndSlide();
 	}
 /// <summary>
