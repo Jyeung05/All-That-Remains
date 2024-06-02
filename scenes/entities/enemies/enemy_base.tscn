@@ -16,7 +16,7 @@ collision_mask = 0
 
 [node name="Detection Area" type="Area2D" parent="." index="4"]
 collision_layer = 0
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Area" index="0"]
 shape = SubResource("CircleShape2D_hmft2")
